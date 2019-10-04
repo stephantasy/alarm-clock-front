@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarm } from './alarm';
+import { ALARMS } from '../mock-alarms';
 
 @Component({
   selector: 'app-alarms',
@@ -8,11 +9,16 @@ import { Alarm } from './alarm';
 })
 export class AlarmsComponent implements OnInit {
 
-  alarm = new Alarm('Test');
+  alarms = ALARMS;
+  selectedAlarm: Alarm;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(alarm: Alarm): void {
+    this.selectedAlarm = alarm;
   }
 
 }
