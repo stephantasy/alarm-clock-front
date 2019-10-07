@@ -7,6 +7,7 @@ import { AlarmsComponent } from './alarms/alarms.component';
 import { MusicsComponent } from './musics/musics.component';
 import { LightsComponent } from './lights/lights.component';
 import { AlarmDetailComponent } from './alarm-detail/alarm-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AlarmDetailComponent } from './alarm-detail/alarm-detail.component';
     AlarmsComponent,
     MusicsComponent,
     LightsComponent,
-    AlarmDetailComponent
+    AlarmDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
