@@ -1,3 +1,4 @@
+<!-- List of alarms -->
 <h2>Alarms:</h2>
 <ul class="alarms">
     <li *ngFor="let alarm of alarms" [class.selected]="alarm === selectedAlarm" (click)="onSelect(alarm)">
@@ -5,12 +6,5 @@
     </li>
 </ul>
 
-<div *ngIf="selectedAlarm">
-    <h2>{{selectedAlarm.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedAlarm.id}}</div>
-    <div>
-        <label>name:
-            <input [(ngModel)]="selectedAlarm.name" placeholder="name" />
-        </label>
-    </div>
-</div>
+<!-- Selected Alarm -->
+<app-alarm-detail [alarm]="selectedAlarm"></app-alarm-detail>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarm } from './alarm';
-import { ALARMS } from '../mock-alarms';
+import { AlarmService } from '../alarm.service';
 
 @Component({
   selector: 'app-alarms',
@@ -9,16 +9,21 @@ import { ALARMS } from '../mock-alarms';
 })
 export class AlarmsComponent implements OnInit {
 
-  alarms = ALARMS;
+  alarms: Alarm[];
   selectedAlarm: Alarm;
 
-  constructor() { }
+  constructor(private alarmService: AlarmService) { }
 
   ngOnInit() {
+    this.getAlarms();
   }
 
   onSelect(alarm: Alarm): void {
     this.selectedAlarm = alarm;
+  }
+
+  getAlarms(): void {
+    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);
   }
 
 }
