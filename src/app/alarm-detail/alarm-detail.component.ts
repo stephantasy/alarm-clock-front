@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Alarm } from '../alarms/alarm';
+import { AlarmService } from '../alarm.service';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -8,11 +12,25 @@ import { Alarm } from '../alarms/alarm';
 })
 export class AlarmDetailComponent implements OnInit {
 
-  @Input() alarm: Alarm;
+  alarm: Alarm;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private alarmService: AlarmService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
+    this.getAlarm();
+  }
+
+  getAlarm() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.alarmService.getAlarm(id).subscribe(alarm => this.alarm = alarm);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

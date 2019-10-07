@@ -8,15 +8,17 @@ import { MusicsComponent } from './musics/musics.component';
 import { LightsComponent } from './lights/lights.component';
 import { AlarmDetailComponent } from './alarm-detail/alarm-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlarmsComponent,
+    AlarmDetailComponent,
     MusicsComponent,
     LightsComponent,
-    AlarmDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

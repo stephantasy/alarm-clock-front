@@ -10,16 +10,11 @@ import { AlarmService } from '../alarm.service';
 export class AlarmsComponent implements OnInit {
 
   alarms: Alarm[];
-  selectedAlarm: Alarm;
 
   constructor(private alarmService: AlarmService) { }
 
   ngOnInit() {
     this.getAlarms();
-  }
-
-  onSelect(alarm: Alarm): void {
-    this.selectedAlarm = alarm;
   }
 
   getAlarms(): void {

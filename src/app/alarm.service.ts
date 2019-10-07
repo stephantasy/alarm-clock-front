@@ -16,4 +16,11 @@ export class AlarmService {
     this.messageService.add('AlarmService: fetched alarms');
     return of(ALARMS);
   }
+  
+  getAlarm(id: number): Observable<Alarm> {
+    // TODO: send the message _after_ fetching the alarms
+    this.messageService.add(`AlarmService: fetched alarm id=${id}`);
+    return of(ALARMS.find(alarm => alarm.id === id));
+  }
+
 }

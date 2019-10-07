@@ -1,12 +1,11 @@
 <!-- List of alarms -->
 <h2>Alarms:</h2>
 <ul class="alarms">
-    <li *ngFor="let alarm of alarms" [class.selected]="alarm === selectedAlarm" (click)="onSelect(alarm)">
-        <span class="badge">{{alarm.id}}</span>{{alarm.name}}
+    <li *ngFor="let alarm of alarms">
+        <a routerLink="/detail/{{alarm.id}}">
+            <span class="badge">{{alarm.id}}</span>{{alarm.name}}
+        </a>
     </li>
 </ul>
 
 <hr>
-
-<!-- Selected Alarm -->
-<app-alarm-detail [alarm]="selectedAlarm"></app-alarm-detail>
