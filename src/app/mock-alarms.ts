@@ -1,4 +1,4 @@
-import { Alarm } from './alarms/alarm';
+import { Alarm } from './alarm-detail/alarm';
 
 
 export const ALARMS: Alarm[] = [

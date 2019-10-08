@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../alarm.service';
-import { Alarm } from '../alarms/alarm';
+import { Alarm } from '../alarm-detail/alarm';
 
 @Component({
   selector: 'app-dashboard',
