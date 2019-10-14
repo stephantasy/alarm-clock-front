@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AlarmService {
 
   // URLs to web api 
-  private alarmsUrl = 'http://localhost:8081/alarms/';        // for Alarms
-  private alarmUrl = 'http://localhost:8081/alarms/alarm/';   // for Specified Alarm
+  private alarmsUrl = environment.apiUrl + 'alarms/';        // for Alarms
+  private alarmUrl = environment.apiUrl + 'alarms/alarm/';   // for Specified Alarm
 
 
   constructor(
@@ -37,7 +38,7 @@ export class AlarmService {
     return this.http
       .get<Alarm>(this.alarmUrl + id)
       .pipe(
-        tap(_ => this.log(`fetched alarm id=${id}`)),
+        tap(_ => this.log(`fetched alarm id=${id} (from ${this.alarmsUrl})`)),
         catchError(this.handleError<Alarm>(`getAlarm id=${id}`))
       );
   }

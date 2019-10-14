@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getAlarms() {
-    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms.slice(0, 4));
+    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms.slice(0, 3));
   }
 
 }

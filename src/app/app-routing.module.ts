@@ -6,7 +6,7 @@ import { AlarmDetailComponent } from './alarm-detail/alarm-detail.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },  // Default Route
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },  // Default Route
   { path: 'dashboard', component: DashboardComponent },
   { path: 'alarms', component: AlarmsComponent },
   { path: 'detail/:id', component: AlarmDetailComponent },
