@@ -1,1 +1,47 @@
-<p>musics works!</p>
+<h1>Music</h1>
+
+
+<mat-card>
+    <mat-card-content>
+        <p>Maximum volume of the music</p>
+        <span>Volume: </span>
+        <mat-slider class="slider" [min]="0" [max]="100" [step]="1" [thumbLabel]="true" [(ngModel)]="volumeValue">
+        </mat-slider>{{volumeValue}}%
+        <br>
+
+        <p>How long it will take to reach the maximum volume since the start</p>
+        <span>Duration: </span>
+        <mat-slider class="slider" [min]="0" [max]="60" [step]="1" [thumbLabel]="true" [(ngModel)]="durationValue">
+        </mat-slider>{{durationValue}} minute(s)
+        <br>
+
+        <p>Will the music loop</p>
+        <span>Loop: </span>
+        <mat-checkbox class="example-margin" [(ngModel)]="loopChecked" [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition">
+        </mat-checkbox>
+
+    </mat-card-content>
+
+</mat-card>
+
+<div id="commands">
+    <div class="button-row">
+        <button mat-raised-button color="primary">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-raised-button color="primary">
+            <mat-icon>pause</mat-icon>
+        </button>
+        <button mat-raised-button color="primary">
+            <mat-icon>stop</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div id="validation">
+    <div class="button-row">
+        <a mat-raised-button routerLink="." color="accent">Ok</a>
+        <a mat-raised-button routerLink="." color="warn">Cancel</a>
+    </div>
+</div>

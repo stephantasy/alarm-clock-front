@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {coerceNumberProperty} from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-musics',
@@ -11,5 +12,11 @@ export class MusicsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  // Controls
+  volumeValue = 100;
+  durationValue = 5;
+  loopChecked = true;
+
 
 }
