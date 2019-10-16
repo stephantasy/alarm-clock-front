@@ -1,46 +1,49 @@
 <h1>Light</h1>
 
 <mat-card>
-        <mat-card-content>
-            <p>Maximum volume of the music</p>
-            <span>Volume: </span>
-            <mat-slider class="slider" [min]="0" [max]="100" [step]="1" [thumbLabel]="true" [(ngModel)]="volumeValue">
-            </mat-slider>{{volumeValue}}%
-            <br>
-    
-            <p>How long it will take to reach the maximum volume since the start</p>
-            <span>Duration: </span>
-            <mat-slider class="slider" [min]="0" [max]="60" [step]="1" [thumbLabel]="true" [(ngModel)]="durationValue">
-            </mat-slider>{{durationValue}} minute(s)
-            <br>
-    
-            <p>Will the music loop</p>
-            <span>Loop: </span>
-            <mat-checkbox class="example-margin" [(ngModel)]="loopChecked" [(indeterminate)]="indeterminate"
-                [labelPosition]="labelPosition">
-            </mat-checkbox>
-    
-        </mat-card-content>
-    
-    </mat-card>
-    
-    <div id="commands">
-        <div class="button-row">
-            <button mat-raised-button color="primary">
-                <mat-icon>play_arrow</mat-icon>
-            </button>
-            <button mat-raised-button color="primary">
-                <mat-icon>pause</mat-icon>
-            </button>
-            <button mat-raised-button color="primary">
-                <mat-icon>stop</mat-icon>
-            </button>
-        </div>
+    <mat-card-content>
+        <p>Maximum intensity of the light</p>
+        <span>Intensity: </span>
+        <mat-slider class="slider" [min]="0" [max]="100" [step]="1" [thumbLabel]="true" [(ngModel)]="intensityValue">
+        </mat-slider>{{intensityValue}}%
+        <br>
+
+        <p>Light Color:</p>
+        <mat-form-field>
+            <mat-select [(ngModel)]="colorValue">
+                <mat-option *ngFor="let color of colors" [value]="color.code">
+                    {{color.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput class="input-color" [readonly]="true" [style.background]="colorValue" />
+        </mat-form-field>
+
+
+        <p>How long it will take to reach the maximum intensity since the start</p>
+        <span>Duration: </span>
+        <mat-slider class="slider" [min]="0" [max]="60" [step]="1" [thumbLabel]="true" [(ngModel)]="durationValue">
+        </mat-slider>{{durationValue}} minute(s)
+    </mat-card-content>
+
+</mat-card>
+
+<div id="commands">
+    <div class="button-row">
+        <button mat-raised-button color="primary">
+            <mat-icon class="icon-on">highlight</mat-icon>
+        </button>
+        <button mat-raised-button color="primary">
+            <mat-icon class="icon-off">highlight_off</mat-icon>
+        </button>
     </div>
-    
-    <div id="validation">
-        <div class="button-row">
-            <a mat-raised-button routerLink="." color="accent">Ok</a>
-            <a mat-raised-button routerLink="." color="warn">Cancel</a>
-        </div>
+</div>
+
+<div id="validation">
+    <div class="button-row">
+        <a mat-raised-button routerLink="." color="success">Ok</a>
+        <a mat-raised-button routerLink="." color="warn">Cancel</a>
     </div>
+</div>

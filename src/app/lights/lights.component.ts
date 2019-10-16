@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { COLORS } from '../shared/colorList';
+import { MatSelectChange } from '@angular/material';
 
 @Component({
   selector: 'app-lights',
@@ -12,6 +14,13 @@ export class LightsComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+  // Colors
+  colors = COLORS;
+
+  // Controls
+  intensityValue = 100;
+  colorValue:string = this.colors[0].code;
+  durationValue = 15;
+
 
 }

@@ -15,7 +15,7 @@ import {
   MatIconModule, MatSliderModule,
   MatCheckboxModule, MatFormFieldModule,
   MatInputModule, MatButtonModule,
-  MatSelectModule
+  MatSelectModule, MatGridListModule
 } from '@angular/material';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -46,6 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatInputModule ,
     MatButtonModule,
     MatSelectModule,
+    MatGridListModule,
     FlexLayoutModule,
   ],
   providers: [],
