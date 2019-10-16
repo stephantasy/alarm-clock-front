@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Alarm } from './alarm-detail/alarm';
+import { Alarm, AlarmContract } from './alarm-detail/alarm';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, retry } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -25,10 +25,12 @@ export class AlarmService {
     // TODO: send the message _after_ fetching the alarms
     this.log('AlarmService: fetched alarms');
     return this.http
-      .get<Alarm[]>(this.alarmsUrl)
+      .get<AlarmContract[]>(this.alarmsUrl)
       .pipe(
+        retry(3), 
         tap(_ => this.log('fetched alarms')),
-        catchError(this.handleError<Alarm[]>('getAlarms'))
+        catchError(this.handleError<AlarmContract[]>('getAlarms')),
+        map(contract =>  { return contract.map((item:AlarmContract) => new Alarm(item))})
       );
   }
 
@@ -36,10 +38,12 @@ export class AlarmService {
     // TODO: send the message _after_ fetching the alarms
     this.messageService.add(`AlarmService: fetched alarm id=${id}`);
     return this.http
-      .get<Alarm>(this.alarmUrl + id)
+      .get<AlarmContract>(this.alarmUrl + id)
       .pipe(
+        retry(3), 
         tap(_ => this.log(`fetched alarm id=${id} (from ${this.alarmsUrl})`)),
-        catchError(this.handleError<Alarm>(`getAlarm id=${id}`))
+        catchError(this.handleError<AlarmContract>(`getAlarm id=${id}`)),
+        map(contract => new Alarm(contract))
       );
   }
 

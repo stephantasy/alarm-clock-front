@@ -1,7 +1,29 @@
 <h3>Alarm List</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let alarm of alarms" class="col-1-x" routerLink="/detail/{{alarm.id}}">
-    <div class="module alarm">
-      <h4>{{alarm.name}}</h4>
-    </div>
-  </a>
+
+<div class="mat-app-background basic-container" class="">
+  <mat-list class="">
+    <mat-list-item *ngFor="let alarm of alarms" class="card">
+      
+      <mat-icon mat-list-icon>alarm</mat-icon>
+
+      <h4 mat-line><b>{{alarm.name}}</b></h4>
+
+      <p mat-line>{{alarm.name}}</p>
+
+      <div class="date">
+        <p mat-line> {{alarm.date}} </p>
+      </div>
+
+      <button mat-icon-button routerLink="/detail/{{alarm.id}}">
+        <mat-icon mat-list-icon class="edit">edit</mat-icon>
+      </button>
+
+      <mat-slide-toggle class="slider" [checked]="isActivated(alarm)" (change)="onSliderChange($event, alarm)"></mat-slide-toggle>
+    
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<button mat-icon-button class="add">
+  <mat-icon mat-list-icon>add</mat-icon>
+</button>

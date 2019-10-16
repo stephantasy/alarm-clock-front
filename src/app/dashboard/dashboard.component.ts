@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,14 @@ export class DashboardComponent implements OnInit {
   }
 
   getAlarms() {
-    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms.slice(0, 3));
+    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);
   }
 
+  onSliderChange(obj: MatSlideToggleChange, alarm: Alarm){
+    alarm.setActivated(obj.checked);
+  }
+
+  isActivated(alarm: Alarm): boolean{
+    return alarm.getActivated();
+  }
 }

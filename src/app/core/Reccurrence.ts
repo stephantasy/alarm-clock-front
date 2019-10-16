@@ -1,11 +1,12 @@
 
 enum Type{
     Once,
-    EveryDay,
+    EveryTime,
 }
 
 export class  Recurrence {
     type: Type;
+    days: Int8Array;
 
     // Default
     constructor(){
