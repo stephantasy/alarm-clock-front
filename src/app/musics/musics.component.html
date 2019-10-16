@@ -3,6 +3,24 @@
 
 <mat-card>
     <mat-card-content>
+        <p>Music to play</p>
+        <span>Music:</span>
+        <mat-form-field class="music-file">
+            <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+                <!-- <mat-option>Clear</mat-option>
+                <mat-option value="valid">Valid option</mat-option> -->
+                <mat-option value="invalid"></mat-option>
+                <mat-option *ngFor="let music of musics" value="valid">
+                    {{music.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+            <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                Your selection is invalid
+            </mat-error>
+        </mat-form-field>
+        <br>
+
         <p>Maximum volume of the music</p>
         <span>Volume: </span>
         <mat-slider class="slider" [min]="0" [max]="100" [step]="1" [thumbLabel]="true" [(ngModel)]="volumeValue">

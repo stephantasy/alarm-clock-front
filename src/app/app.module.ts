@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MusicsComponent } from './musics/musics.component';
@@ -14,7 +14,8 @@ import {
   MatCardModule, MatListModule, 
   MatIconModule, MatSliderModule,
   MatCheckboxModule, MatFormFieldModule,
-  MatInputModule, MatButtonModule
+  MatInputModule, MatButtonModule,
+  MatSelectModule
 } from '@angular/material';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatListModule,
@@ -43,6 +45,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatFormFieldModule,
     MatInputModule ,
     MatButtonModule,
+    MatSelectModule,
     FlexLayoutModule,
   ],
   providers: [],

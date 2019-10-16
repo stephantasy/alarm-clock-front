@@ -12,4 +12,6 @@ export class LightsComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
 }
