@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Alarm, AlarmContract } from './alarm-detail/alarm';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, retry } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AlarmContract, Alarm } from '../alarm-detail/alarm';
 
 @Injectable({
   providedIn: 'root'

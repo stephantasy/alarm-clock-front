@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { Recurrence } from '../core/Reccurrence';
+import { Recurrence } from '../shared/Reccurrence';
 import { Music } from '../musics/music';
 import { Light } from '../lights/light';
 

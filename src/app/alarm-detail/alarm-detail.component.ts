@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Alarm } from './alarm';
-import { AlarmService } from '../alarm.service';
+import { AlarmService } from '../services/alarm.service';
 
 @Component({
   selector: 'app-alarm-detail',

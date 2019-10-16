@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlarmService } from '../alarm.service';
+import { AlarmService } from '../services/alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 

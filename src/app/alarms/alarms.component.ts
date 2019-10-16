@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarm } from '../alarm-detail/alarm';
-import { AlarmService } from '../alarm.service';
+import { AlarmService } from '../services/alarm.service';
 
 @Component({
   selector: 'app-alarms',
