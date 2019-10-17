@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Recurrence } from '../shared/Reccurrence';
 import { Music } from '../musics/music';
 import { Light } from '../lights/light';
+import { RecurrenceType } from '../shared/recurrenceType';
 
 export interface AlarmContract{
     id: number;
@@ -39,7 +40,7 @@ export class Alarm{
     }
 
 
-    public setActivated(value:boolean){
+    public setActivated(value:boolean):void{
         this.activated = value;
     }
 
@@ -47,4 +48,11 @@ export class Alarm{
         return this.activated;
     }
 
+    public getHour():string{
+        return this.date.getTime().toString();
+    }
+
+    public isRecurrenceOnce():boolean{
+        return this.recurence.getType() === RecurrenceType.Once;
+    }
 }

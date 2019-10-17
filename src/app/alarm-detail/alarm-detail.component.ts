@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Alarm } from './alarm';
 import { AlarmService } from '../services/alarm.service';
+import { MatCheckboxChange } from '@angular/material';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -22,11 +23,19 @@ export class AlarmDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getAlarm();
-  }
+  }  
 
   getAlarm() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.alarmService.getAlarm(id).subscribe(alarm => this.alarm = alarm);
+  }
+
+  onRecurrenceChange(obj: MatCheckboxChange, alarm: Alarm){
+    alarm.setActivated(obj.checked);
+  }
+
+  isActivated(alarm: Alarm): boolean{
+    return alarm.getActivated();
   }
 
   goBack(): void {

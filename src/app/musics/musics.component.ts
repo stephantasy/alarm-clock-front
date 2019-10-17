@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { Music } from './music';
+import { MusicService } from '../services/music.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -18,9 +19,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class MusicsComponent implements OnInit {
 
-  constructor() { }
+  musics: string[] = [];
+
+  constructor(private musicService: MusicService) { }
 
   ngOnInit() {
+    this.getMusicList();
+  }
+
+  getMusicList() {
+    // TODO
+    // this.musicService.getMusicList().subscribe(musics => this.musics = musics);
+    this.musics = FAKE_MUSIC_LIST;
   }
 
   // Controls
@@ -43,10 +53,12 @@ export class MusicsComponent implements OnInit {
   ]);
   matcher = new MyErrorStateMatcher();
 
-  // TODO: Fetch Musics from backend
-  musics: Music[] = [
-    new Music("Musique 1"),
-    new Music("Musique 202")
-  ]
+
 
 }
+
+const FAKE_MUSIC_LIST = [
+  "Music 1",
+  "Music Music Music 2",
+  "Music 3",
+];

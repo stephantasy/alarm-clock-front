@@ -1,16 +1,13 @@
+import { RecurrenceType } from './recurrenceType';
 
-enum Type{
-    Once,
-    EveryTime,
-}
 
 export class  Recurrence {
-    type: Type;
+    type: RecurrenceType;
     days: Int8Array;
 
     // Default
     constructor(){
-        this.type = Type.Once;
+        this.type = RecurrenceType.Once;
     }
 
     getType() {

@@ -1,10 +1,37 @@
+<h3>Alarm List</h3>
+
 <div *ngIf="alarm">
-    <h2>{{alarm.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{alarm.id}}</div>
     <div>
-        <label>name:
-            <input [(ngModel)]="alarm.name" placeholder="name" />
-        </label>
+        <h2>Title:</h2>
+        <input [(ngModel)]="alarm.name" placeholder="name" />
     </div>
+
+    <div>
+        <h2>When</h2>
+        <h3>{{alarm.getHour()}}</h3>
+    </div>
+
+    <div>
+        <h2>Recurrence</h2>
+
+        <mat-radio-group class="radio-group">
+            <mat-radio-button value="once">Once</mat-radio-button>
+            <mat-radio-button value="everyDay">Every Day</mat-radio-button>
+        </mat-radio-group>
+
+        <div>
+            <h3>Days:</h3>
+            <mat-checkbox [checked]="isActivated(alarm)" (change)="onRecurrenceChange($event, alarm)"></mat-checkbox>
+        </div>
+
+    </div>
+
+    <div id="validation">
+        <div class="button-row">
+            <a mat-raised-button routerLink="." color="success">Ok</a>
+            <a mat-raised-button routerLink="." color="warn">Cancel</a>
+        </div>
+    </div>
+
     <button (click)="goBack()">go back</button>
 </div>

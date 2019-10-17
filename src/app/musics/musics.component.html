@@ -11,7 +11,7 @@
                 <mat-option value="valid">Valid option</mat-option> -->
                 <mat-option value="invalid"></mat-option>
                 <mat-option *ngFor="let music of musics" value="valid">
-                    {{music.name}}
+                    {{music}}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
@@ -35,8 +35,7 @@
 
         <p>Will the music loop</p>
         <span>Loop: </span>
-        <mat-checkbox class="example-margin" [(ngModel)]="loopChecked" [(indeterminate)]="indeterminate"
-            [labelPosition]="labelPosition">
+        <mat-checkbox class="" [(ngModel)]="loopChecked">
         </mat-checkbox>
 
     </mat-card-content>
