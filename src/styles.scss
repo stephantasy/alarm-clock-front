@@ -29,7 +29,7 @@ $alarm-clock-theme: mat-light-theme($alarm-clock-primary, $alarm-clock-accent, $
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; margin: 10px; }
 
 
 // Add a success color for Button
@@ -52,4 +52,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-icon-button.mat-success {
   color:#155724;
+}
+
+
+// Validation button (Ok/Cancel)
+.validation{
+  margin: 10px;
+}
+.button-row-validation button,
+.button-row-validation a {
+  margin-right: 8px;
 }

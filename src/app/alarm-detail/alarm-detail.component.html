@@ -15,8 +15,8 @@
         <h2>Recurrence</h2>
 
         <mat-radio-group class="radio-group">
-            <mat-radio-button value="once">Once</mat-radio-button>
-            <mat-radio-button value="everyDay">Every Day</mat-radio-button>
+            <mat-radio-button [checked]="isActivated(alarm)" value="once">Once</mat-radio-button>
+            <mat-radio-button [checked]="!isActivated(alarm)" value="everyDay">Every Day</mat-radio-button>
         </mat-radio-group>
 
         <div>
@@ -26,8 +26,8 @@
 
     </div>
 
-    <div id="validation">
-        <div class="button-row">
+    <div id="validation" class="validation">
+        <div class="button-row-validation">
             <a mat-raised-button routerLink="." color="success">Ok</a>
             <a mat-raised-button routerLink="." color="warn">Cancel</a>
         </div>
