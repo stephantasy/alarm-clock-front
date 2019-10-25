@@ -14,24 +14,29 @@
     <div>
         <h2>Recurrence</h2>
 
-        <mat-radio-group class="radio-group">
-            <mat-radio-button [checked]="isActivated(alarm)" value="once">Once</mat-radio-button>
-            <mat-radio-button [checked]="!isActivated(alarm)" value="everyDay">Every Day</mat-radio-button>
+        <mat-radio-group class="radio-group" (change)="onRecurrenceChange($event, alarm)">
+            <mat-radio-button [checked]="isRecurrenceOnce($this, alarm)" value="Once">Once</mat-radio-button>
+            <mat-radio-button [checked]="!isRecurrenceOnce($this, alarm)" value="EveryDay">Every Day</mat-radio-button>
         </mat-radio-group>
 
-        <div>
+        <div id="recurrenceDays" *ngIf="!daysAreHidden">
             <h3>Days:</h3>
-            <mat-checkbox [checked]="isActivated(alarm)" (change)="onRecurrenceChange($event, alarm)"></mat-checkbox>
+            <!-- <mat-checkbox [checked]="isRecurrenceDayChecked(alarm) === 'Monday'" (change)="onRecurrenceDays($event, alarm)">Monday</mat-checkbox> -->
+            <section class="">
+                <mat-checkbox *ngFor="let day of days" [value]="day" 
+                    [checked]="isRecurrenceDayChecked(alarm) === day"
+                    (change)="onRecurrenceDays($event, alarm)">
+                    {{day}}
+                </mat-checkbox>
+            </section>
         </div>
 
     </div>
 
     <div id="validation" class="validation">
         <div class="button-row-validation">
-            <a mat-raised-button routerLink="." color="success">Ok</a>
-            <a mat-raised-button routerLink="." color="warn">Cancel</a>
+            <button mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Ok</button>
+            <button mat-raised-button routerLink="." color="warn" (click)=onButtonCancel()>Cancel</button>
         </div>
     </div>
-
-    <button (click)="goBack()">go back</button>
 </div>

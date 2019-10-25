@@ -4,7 +4,9 @@ import { Location } from '@angular/common';
 
 import { Alarm } from './alarm';
 import { AlarmService } from '../services/alarm.service';
-import { MatCheckboxChange } from '@angular/material';
+import { MatCheckboxChange, MatRadioChange } from '@angular/material';
+import { MessageService } from '../services/message.service';
+import { RecurrenceType } from '../shared/recurrenceType';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -14,10 +16,13 @@ import { MatCheckboxChange } from '@angular/material';
 export class AlarmDetailComponent implements OnInit {
 
   alarm: Alarm;
+  days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thuersday', 'Friday', 'Saturday', 'Sunday'];
+  daysAreHidden: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private alarmService: AlarmService,
+    private messageService: MessageService,
     private location: Location
   ) { }
 
@@ -27,19 +32,43 @@ export class AlarmDetailComponent implements OnInit {
 
   getAlarm() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.alarmService.getAlarm(id).subscribe(alarm => this.alarm = alarm);
+    this.alarmService.getAlarm(id).subscribe(alarm => {
+      // this.messageService.add("alarm: " + alarm);
+      return this.alarm = alarm;
+    });
   }
 
-  onRecurrenceChange(obj: MatCheckboxChange, alarm: Alarm){
-    alarm.setActivated(obj.checked);
+  onRecurrenceChange(obj: MatRadioChange, alarm: Alarm){
+    
+    if(obj.value === RecurrenceType.Once){
+      this.daysAreHidden = true;
+    }else{
+      this.daysAreHidden = false;
+    }
+    
+    this.messageService.add("0: " + obj.value + " - " + RecurrenceType.Once.toString());
+  }
+  
+  onRecurrenceDays() : void{
+
   }
 
-  isActivated(alarm: Alarm): boolean{
-    return alarm.getActivated();
+  isRecurrenceDayChecked(): string{
+    return 'Friday';
   }
 
-  goBack(): void {
+  isRecurrenceOnce(obj: MatRadioChange, alarm: Alarm): boolean{
+    // this.onRecurrenceChange(obj, alarm);
+    return true;//alarm.isRecurrenceOnce();
+  }
+
+  onButtonOk(): void {
+    //TODO
+  }
+
+  onButtonCancel(): void {
     this.location.back();
   }
+  
 
 }

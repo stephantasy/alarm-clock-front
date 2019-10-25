@@ -1,5 +1,5 @@
 
 export enum RecurrenceType{
-    Once,
-    EveryTime,
+    Once = "Once",
+    EveryDay = "EveryDay"
 }
