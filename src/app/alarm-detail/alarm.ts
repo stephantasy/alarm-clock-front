@@ -9,7 +9,7 @@ export interface AlarmContract{
     name: string;
     description: string;
     date: Date;
-    recurence: Recurrence;
+    recurrence: Recurrence;
     music: Music;
     light: Light;
     deleteAfterDone: boolean;
@@ -21,7 +21,7 @@ export class Alarm{
     name: string;
     description: string;
     date: Date = new Date();
-    recurence: Recurrence;
+    recurrence: Recurrence;
     music: Music;
     light: Light;
     deleteAfterDone: boolean;
@@ -32,7 +32,7 @@ export class Alarm{
         this.name = contract.name;
         this.description = contract.description;
         this.date = new Date(contract.date);
-        this.recurence = contract.recurence;
+        this.recurrence = new Recurrence(contract.recurrence);
         this.music = contract.music;
         this.light = contract.light;
         this.deleteAfterDone = contract.deleteAfterDone;
@@ -53,6 +53,17 @@ export class Alarm{
     }
 
     public isRecurrenceOnce():boolean{
-        return this.recurence.getType() === RecurrenceType.Once;
+        return RecurrenceType[this.recurrence.getType().toString()] === RecurrenceType.Once;
+    }
+
+    // Return if the (number of) day is selected
+    isDaySelected(day: number):boolean {
+        return this.recurrence.days[day] === 1;
+    }
+
+    
+    // Set the day as selected
+    setDaySelected(day: number) {
+        this.recurrence.days[day] = 1;
     }
 }

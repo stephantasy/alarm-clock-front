@@ -7,6 +7,7 @@ import { AlarmService } from '../services/alarm.service';
 import { MatCheckboxChange, MatRadioChange } from '@angular/material';
 import { MessageService } from '../services/message.service';
 import { RecurrenceType } from '../shared/recurrenceType';
+import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -18,6 +19,7 @@ export class AlarmDetailComponent implements OnInit {
   alarm: Alarm;
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thuersday', 'Friday', 'Saturday', 'Sunday'];
   daysAreHidden: boolean;
+  dataAreLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,44 +28,52 @@ export class AlarmDetailComponent implements OnInit {
     private location: Location
   ) { }
 
+  
   ngOnInit() {
     this.getAlarm();
   }  
 
+  // Get the Alarm from DB
   getAlarm() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.alarmService.getAlarm(id).subscribe(alarm => {
-      // this.messageService.add("alarm: " + alarm);
-      return this.alarm = alarm;
+      this.alarm = alarm;
+      this.dataAreLoaded = true;
+      this.daysAreHidden = alarm.isRecurrenceOnce();
     });
   }
+  
+  // Update selected days 
+  onRecurrenceDays(day: string) : void{
 
-  onRecurrenceChange(obj: MatRadioChange, alarm: Alarm){
-    
-    if(obj.value === RecurrenceType.Once){
+  }
+
+  // Return if the day passed in parameter is selected
+  isRecurrenceDayChecked(day: string): string{
+    var isSelected = this.alarm.isDaySelected(this.days.indexOf(day));
+    // this.messageService.add("day: " + day + " - Position: " + this.days.indexOf(day) + " - Selected: " + isSelected);
+    return isSelected ? day : ''; // Return the day if selected otherwise nothing
+  }
+
+  // Recurrence or not
+  isRecurrenceOnce(obj: MatRadioChange): boolean{
+    return this.alarm.isRecurrenceOnce();
+  }
+
+  // Recurrence Selection Changed
+  onRecurrenceChange(obj: MatRadioChange){
+    if(obj.value == RecurrenceType.Once){
       this.daysAreHidden = true;
     }else{
       this.daysAreHidden = false;
     }
-    
-    this.messageService.add("0: " + obj.value + " - " + RecurrenceType.Once.toString());
-  }
-  
-  onRecurrenceDays() : void{
-
+    // this.messageService.add(obj.value + " = " + RecurrenceType.Once.toString() + "?");
   }
 
-  isRecurrenceDayChecked(): string{
-    return 'Friday';
-  }
-
-  isRecurrenceOnce(obj: MatRadioChange, alarm: Alarm): boolean{
-    // this.onRecurrenceChange(obj, alarm);
-    return true;//alarm.isRecurrenceOnce();
-  }
 
   onButtonOk(): void {
     //TODO
+    this.messageService.add("alarm: " + this.alarm.isRecurrenceOnce());
   }
 
   onButtonCancel(): void {

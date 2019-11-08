@@ -1,17 +1,22 @@
 import { RecurrenceType } from './recurrenceType';
 
+// export interface RecurrenceContract{
+//     recurrenceType: RecurrenceType;
+//     days: Int8Array;
+// }
 
-export class  Recurrence {
-    type: RecurrenceType;
+export class Recurrence {
+    recurrenceType: RecurrenceType;
     days: Int8Array;
 
     // Default
-    constructor(){
-        this.type = RecurrenceType.Once;
+    constructor(contract: Recurrence){
+        this.recurrenceType = contract.recurrenceType;
+        this.days = contract.days;
     }
 
-    getType() {
-        return this.type;
+    getType(): RecurrenceType {
+        return this.recurrenceType;
     }
     
 }

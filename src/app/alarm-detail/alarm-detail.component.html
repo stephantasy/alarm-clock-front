@@ -14,18 +14,17 @@
     <div>
         <h2>Recurrence</h2>
 
-        <mat-radio-group class="radio-group" (change)="onRecurrenceChange($event, alarm)">
-            <mat-radio-button [checked]="isRecurrenceOnce($this, alarm)" value="Once">Once</mat-radio-button>
-            <mat-radio-button [checked]="!isRecurrenceOnce($this, alarm)" value="EveryDay">Every Day</mat-radio-button>
+        <mat-radio-group class="radio-group" (change)="onRecurrenceChange($event)">
+            <mat-radio-button [checked]="isRecurrenceOnce($this)" value="0">Once</mat-radio-button>
+            <mat-radio-button [checked]="!isRecurrenceOnce($this)" value="1">Every Day</mat-radio-button>
         </mat-radio-group>
 
         <div id="recurrenceDays" *ngIf="!daysAreHidden">
             <h3>Days:</h3>
-            <!-- <mat-checkbox [checked]="isRecurrenceDayChecked(alarm) === 'Monday'" (change)="onRecurrenceDays($event, alarm)">Monday</mat-checkbox> -->
             <section class="">
                 <mat-checkbox *ngFor="let day of days" [value]="day" 
-                    [checked]="isRecurrenceDayChecked(alarm) === day"
-                    (change)="onRecurrenceDays($event, alarm)">
+                    [checked]="isRecurrenceDayChecked(day) === day"
+                    (change)="onRecurrenceDays($event, day)">
                     {{day}}
                 </mat-checkbox>
             </section>
