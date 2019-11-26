@@ -44,8 +44,8 @@ export class AlarmDetailComponent implements OnInit {
   }
   
   // Update selected days 
-  onRecurrenceDays(day: string) : void{
-
+  onRecurrenceDays(obj: MatCheckboxChange, day: number) : void{
+    this.alarm.setDaySelected(day, obj.checked);
   }
 
   // Return if the day passed in parameter is selected

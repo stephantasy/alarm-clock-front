@@ -58,12 +58,12 @@ export class Alarm{
 
     // Return if the (number of) day is selected
     isDaySelected(day: number):boolean {
-        return this.recurrence.days[day] === 1;
+        return this.recurrence.days[day];
     }
 
     
     // Set the day as selected
-    setDaySelected(day: number) {
-        this.recurrence.days[day] = 1;
+    setDaySelected(day: number, state: boolean) {
+        this.recurrence.days[day] = state;
     }
 }

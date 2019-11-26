@@ -7,7 +7,7 @@ import { RecurrenceType } from './recurrenceType';
 
 export class Recurrence {
     recurrenceType: RecurrenceType;
-    days: Int8Array;
+    days: boolean[];
 
     // Default
     constructor(contract: Recurrence){
