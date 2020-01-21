@@ -11,8 +11,8 @@
       <p mat-line>{{alarm.name}}</p>
 
       <div class="date">
-        <p mat-line> {{alarm.date}} </p>
-      </div>
+        <p mat-line> {{alarm.date | date:'yyyy/MM/dd HH:mm'}}</p>
+      </div> 
 
       <button mat-icon-button routerLink="/detail/{{alarm.id}}">
         <mat-icon mat-list-icon class="edit">edit</mat-icon>

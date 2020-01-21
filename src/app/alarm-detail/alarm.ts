@@ -8,7 +8,7 @@ export interface AlarmContract{
     id: number;
     name: string;
     description: string;
-    date: Date;
+    date: string;
     recurrence: Recurrence;
     music: Music;
     light: Light;
@@ -20,7 +20,7 @@ export class Alarm{
     id: number;
     name: string;
     description: string;
-    date: Date = new Date();
+    date: string;
     recurrence: Recurrence;
     music: Music;
     light: Light;
@@ -31,7 +31,7 @@ export class Alarm{
         this.id = contract.id;
         this.name = contract.name;
         this.description = contract.description;
-        this.date = new Date(contract.date);
+        this.date = contract.date;// new Date(contract.date);
         this.recurrence = new Recurrence(contract.recurrence);
         this.music = contract.music;
         this.light = contract.light;
@@ -49,7 +49,7 @@ export class Alarm{
     }
 
     public getHour():string{
-        return this.date.getTime().toString();
+        return new Date(this.date).getTime().toString();
     }
 
     public isRecurrenceOnce():boolean{

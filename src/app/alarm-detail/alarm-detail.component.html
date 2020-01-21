@@ -8,7 +8,7 @@
 
     <div>
         <h2>When</h2>
-        <h3>{{alarm.getHour()}}</h3>
+        <h3>{{alarm.getHour() | date:'yyyy/MM/dd HH:mm'}}</h3>
     </div>
 
     <div>
@@ -24,7 +24,8 @@
             <section class="">
                 <mat-checkbox *ngFor="let day of days" [value]="day" 
                     [checked]="isRecurrenceDayChecked(day) === day"
-                    (change)="onRecurrenceDays($event, day)">
+                    (change)="onRecurrenceDays($event, day)"
+                    >
                     {{day}}
                 </mat-checkbox>
             </section>

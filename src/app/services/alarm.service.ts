@@ -36,13 +36,27 @@ export class AlarmService {
 
   getAlarm(id: number): Observable<Alarm> {
     // TODO: send the message _after_ fetching the alarms
-    this.messageService.add(`AlarmService: fetched alarm id=${id}`);
+    this.log(`AlarmService: fetched alarm id=${id}`);
     return this.http
       .get<AlarmContract>(this.alarmUrl + id)
       .pipe(
         retry(3), 
         tap(_ => this.log(`fetched alarm id=${id} (from ${this.alarmsUrl})`)),
         catchError(this.handleError<AlarmContract>(`getAlarm id=${id}`)),
+        map(contract => new Alarm(contract))
+      );
+  }
+
+  updateAlarm(alarm: Alarm): Observable<Alarm> {
+
+    // TODO: send the message _after_ fetching the alarms
+    this.log(`AlarmService: set alarm id=${alarm.id}`);
+    return this.http
+      .post<AlarmContract>(this.alarmUrl, alarm)
+      .pipe(
+        retry(3), 
+        // tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),
+        // catchError(this.handleError<AlarmContract>(`getAlarm id=${alarm.id}`)),
         map(contract => new Alarm(contract))
       );
   }

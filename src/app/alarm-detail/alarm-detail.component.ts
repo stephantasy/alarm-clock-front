@@ -20,6 +20,7 @@ export class AlarmDetailComponent implements OnInit {
   days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thuersday', 'Friday', 'Saturday', 'Sunday'];
   daysAreHidden: boolean;
   dataAreLoaded: boolean = false;
+  savingInProgress: boolean = false;  // Preserve from spaming
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class AlarmDetailComponent implements OnInit {
   
   ngOnInit() {
     this.getAlarm();
+    this.savingInProgress = false;
   }  
 
   // Get the Alarm from DB
@@ -44,8 +46,9 @@ export class AlarmDetailComponent implements OnInit {
   }
   
   // Update selected days 
-  onRecurrenceDays(obj: MatCheckboxChange, day: number) : void{
-    this.alarm.setDaySelected(day, obj.checked);
+  onRecurrenceDays(obj: MatCheckboxChange, day: string) : void{
+    var dayPos = this.days.indexOf(day);
+    this.alarm.setDaySelected(dayPos, obj.checked);
   }
 
   // Return if the day passed in parameter is selected
@@ -67,13 +70,17 @@ export class AlarmDetailComponent implements OnInit {
     }else{
       this.daysAreHidden = false;
     }
-    // this.messageService.add(obj.value + " = " + RecurrenceType.Once.toString() + "?");
   }
 
 
   onButtonOk(): void {
-    //TODO
-    this.messageService.add("alarm: " + this.alarm.isRecurrenceOnce());
+    
+    if(!this.savingInProgress){
+      this.savingInProgress = true;
+      this.alarmService.updateAlarm(this.alarm).subscribe(() => {
+        this.location.back();
+      });
+    }
   }
 
   onButtonCancel(): void {
