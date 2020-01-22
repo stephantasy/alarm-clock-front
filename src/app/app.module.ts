@@ -20,6 +20,7 @@ import {
 } from '@angular/material';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatRadioModule,
     FlexLayoutModule,
+    NgxMaterialTimepickerModule.setLocale('fr-FR'),
   ],
   providers: [],
   bootstrap: [AppComponent]

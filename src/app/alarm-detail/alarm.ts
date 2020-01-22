@@ -48,8 +48,8 @@ export class Alarm{
         return this.activated;
     }
 
-    public getHour():string{
-        return new Date(this.date).getTime().toString();
+    public getTime():string{
+        return new Date(this.date).getHours() + ":" + new Date(this.date).getMinutes();
     }
 
     public isRecurrenceOnce():boolean{

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -7,7 +7,8 @@ import { AlarmService } from '../services/alarm.service';
 import { MatCheckboxChange, MatRadioChange } from '@angular/material';
 import { MessageService } from '../services/message.service';
 import { RecurrenceType } from '../shared/recurrenceType';
-import { timeInterval } from 'rxjs/operators';
+import { NgxMaterialTimepickerEventService } from 'ngx-material-timepicker/src/app/material-timepicker/services/ngx-material-timepicker-event.service';
+import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
 
 
 @Component({
@@ -46,6 +47,39 @@ export class AlarmDetailComponent implements OnInit {
     });
   }
   
+  getTime(){
+    //this.messageService.add("hour = " + this.alarm.date);
+    //this.messageService.add("hour = " + new Date(this.alarm.date).getHours() + ":" + new Date(this.alarm.date).getMinutes());
+    return this.alarm.getTime();
+  }
+
+  setTime(event: EventEmitter<string>){
+    
+    this.messageService.add("============================================");
+    this.messageService.add("ALARM.DATE= " + this.alarm.date);
+    this.messageService.add("event = " + event);
+
+    var newDate = new Date(this.alarm.date);
+    this.messageService.add("newDate.toString() = " + newDate.toString());
+    this.messageService.add("newDate.toISOString() = " + newDate.toISOString());
+
+    
+    var pipi = newDate.getFullYear() + "/" + newDate.getMonth() + "/" + newDate.getDate() + " " + event + ":00";
+    this.messageService.add("pipi = " + pipi);
+
+    var laDate = new Date(newDate.getFullYear() + "/" + newDate.getMonth()+1  + "/" + newDate.getDate() + " " + event + ":00");
+    this.messageService.add("laDate = " + laDate);
+
+    this.messageService.add("laDate.toDateString() = " + laDate.toDateString());
+    this.messageService.add("laDate.toTimeString() = " + laDate.toTimeString());
+
+
+    this.alarm.date = laDate.getFullYear() + "-" + laDate.getMonth()+1  + "-" + laDate.getDate() + " " + laDate.getHours() + ":" + laDate.getMinutes();
+
+    this.messageService.add("ALARM.DATE= " + this.alarm.date);
+    this.messageService.add("============================================");
+  }
+
   // Update selected days 
   onRecurrenceDays(obj: MatCheckboxChange, day: string) : void{
     var dayPos = this.days.indexOf(day);

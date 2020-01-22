@@ -8,9 +8,8 @@
 
     <div>
         <h2>When</h2>
-        <h3>{{alarm.getHour() | date:'yyyy/MM/dd HH:mm'}}</h3>
         <div class="ngx-timepicker-field-example">
-            <ngx-timepicker-field [format]="24" [defaultTime]="'23:11'"></ngx-timepicker-field>
+            <ngx-timepicker-field [format]="24" [defaultTime]="getTime()" (timeChanged)="setTime($event)"></ngx-timepicker-field>
         </div>
     </div>
 
