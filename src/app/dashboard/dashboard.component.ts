@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../services/alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
 import { MatSlideToggleChange } from '@angular/material';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,10 @@ export class DashboardComponent implements OnInit {
 
   alarms: Alarm[] = [];
 
-  constructor(private alarmService:AlarmService) { }
+  constructor(
+    private alarmService:AlarmService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit() {
     this.getAlarms();
@@ -24,6 +28,11 @@ export class DashboardComponent implements OnInit {
 
   onSliderChange(obj: MatSlideToggleChange, alarm: Alarm){
     alarm.setActivated(obj.checked);
+
+    // TODO: send it to the backend!
+    this.alarmService.updateAlarm(alarm).subscribe(() => {
+      this.messageService.add("Alarm saved")
+    });
   }
 
   isActivated(alarm: Alarm): boolean{

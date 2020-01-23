@@ -54,30 +54,12 @@ export class AlarmDetailComponent implements OnInit {
   }
 
   setTime(event: EventEmitter<string>){
-    
-    this.messageService.add("============================================");
-    this.messageService.add("ALARM.DATE= " + this.alarm.date);
-    this.messageService.add("event = " + event);
-
-    var newDate = new Date(this.alarm.date);
-    this.messageService.add("newDate.toString() = " + newDate.toString());
-    this.messageService.add("newDate.toISOString() = " + newDate.toISOString());
-
-    
-    var pipi = newDate.getFullYear() + "/" + newDate.getMonth() + "/" + newDate.getDate() + " " + event + ":00";
-    this.messageService.add("pipi = " + pipi);
-
-    var laDate = new Date(newDate.getFullYear() + "/" + newDate.getMonth()+1  + "/" + newDate.getDate() + " " + event + ":00");
-    this.messageService.add("laDate = " + laDate);
-
-    this.messageService.add("laDate.toDateString() = " + laDate.toDateString());
-    this.messageService.add("laDate.toTimeString() = " + laDate.toTimeString());
-
-
+    // On crée une Date depuis la String
+    var alarmDate = new Date(this.alarm.date);
+    // On crée une Date avec la précédente date et le résultat de l'Event
+    var laDate = new Date(alarmDate.getFullYear() + "/" + alarmDate.getMonth()+1  + "/" + alarmDate.getDate() + " " + event + ":00");
+    // On reconstruit la String
     this.alarm.date = laDate.getFullYear() + "-" + laDate.getMonth()+1  + "-" + laDate.getDate() + " " + laDate.getHours() + ":" + laDate.getMinutes();
-
-    this.messageService.add("ALARM.DATE= " + this.alarm.date);
-    this.messageService.add("============================================");
   }
 
   // Update selected days 
@@ -100,11 +82,19 @@ export class AlarmDetailComponent implements OnInit {
 
   // Recurrence Selection Changed
   onRecurrenceChange(obj: MatRadioChange){
+    // Display
     if(obj.value == RecurrenceType.Once){
       this.daysAreHidden = true;
     }else{
       this.daysAreHidden = false;
     }
+
+    this.messageService.add("obj.value = " + obj.value);
+    this.messageService.add("alarm.recurrence = " + this.alarm.recurrence.recurrenceType);
+
+    // Data
+    this.alarm.recurrence.recurrenceType = obj.value;
+
   }
 
 
