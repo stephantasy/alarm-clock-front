@@ -4,6 +4,8 @@ import { Music } from '../musics/music';
 import { Light } from '../lights/light';
 import { RecurrenceType } from '../shared/recurrenceType';
 
+declare const alarmContract: AlarmContract;
+
 export interface AlarmContract{
     id: number;
     name: string;
@@ -53,7 +55,8 @@ export class Alarm{
     }
 
     public isRecurrenceOnce():boolean{
-        return RecurrenceType[this.recurrence.getType().toString()] === RecurrenceType.Once;
+        // return RecurrenceType[this.recurrence.getType().toString()] == RecurrenceType.Once;
+        return this.recurrence.getType() == RecurrenceType.Once;
     }
 
     // Return if the (number of) day is selected

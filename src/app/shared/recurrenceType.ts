@@ -1,5 +1,7 @@
 
 export enum RecurrenceType{
-    Once,
-    EveryDay
+    Once = "Once",
+    EveryDay = "EveryDay"
 }
+
+export let RecurrenceDaysNumber = 7;

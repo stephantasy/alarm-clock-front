@@ -1,16 +1,16 @@
 import { RecurrenceType } from './recurrenceType';
 
-// export interface RecurrenceContract{
-//     recurrenceType: RecurrenceType;
-//     days: Int8Array;
-// }
+export interface RecurrenceContract{
+    recurrenceType: RecurrenceType;
+    days: boolean[];
+}
 
 export class Recurrence {
     recurrenceType: RecurrenceType;
     days: boolean[];
 
     // Default
-    constructor(contract: Recurrence){
+    constructor(contract: RecurrenceContract){
         this.recurrenceType = contract.recurrenceType;
         this.days = contract.days;
     }

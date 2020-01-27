@@ -26,16 +26,22 @@ export class DashboardComponent implements OnInit {
     this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);
   }
 
+  // Activation/Desactivation of alarm
   onSliderChange(obj: MatSlideToggleChange, alarm: Alarm){
     alarm.setActivated(obj.checked);
 
-    // TODO: send it to the backend!
+    // Send it to the backend
     this.alarmService.updateAlarm(alarm).subscribe(() => {
       this.messageService.add("Alarm saved")
     });
   }
 
+  
   isActivated(alarm: Alarm): boolean{
     return alarm.getActivated();
+  }
+
+  addAlarm() {
+
   }
 }

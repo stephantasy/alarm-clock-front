@@ -17,8 +17,8 @@
         <h2>Recurrence</h2>
 
         <mat-radio-group class="radio-group" (change)="onRecurrenceChange($event)">
-            <mat-radio-button [checked]="isRecurrenceOnce($this)" value="0">Once</mat-radio-button>
-            <mat-radio-button [checked]="!isRecurrenceOnce($this)" value="1">Every Day</mat-radio-button>
+            <mat-radio-button [checked]="isRecurrenceOnce($this)" value="Once">Once</mat-radio-button>
+            <mat-radio-button [checked]="!isRecurrenceOnce($this)" value="EveryDay">Every Day</mat-radio-button>
         </mat-radio-group>
 
         <div id="recurrenceDays" *ngIf="!daysAreHidden">
@@ -37,7 +37,8 @@
 
     <div id="validation" class="validation">
         <div class="button-row-validation">
-            <button mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Ok</button>
+            <button *ngIf="isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Create</button>
+            <button *ngIf="!isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Ok</button>
             <button mat-raised-button routerLink="." color="warn" (click)=onButtonCancel()>Cancel</button>
         </div>
     </div>
