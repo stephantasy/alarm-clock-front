@@ -37,7 +37,7 @@
 
     <div id="validation" class="validation">
         <div class="button-row-validation">
-            <button *ngIf="isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Create</button>
+            <button *ngIf="isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonCreate()>Create</button>
             <button *ngIf="!isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Ok</button>
             <button mat-raised-button routerLink="." color="warn" (click)=onButtonCancel()>Cancel</button>
         </div>

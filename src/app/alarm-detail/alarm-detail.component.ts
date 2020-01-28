@@ -62,7 +62,7 @@ export class AlarmDetailComponent implements OnInit {
         id: 0,
         name: "NAME",
         description: "",
-        date: (new Date()).toISOString(),
+        date: this.createTime(new Date()),
         recurrence: new Recurrence(recurrence),
         music: null,
         light: null,
@@ -83,8 +83,6 @@ export class AlarmDetailComponent implements OnInit {
 
 
   getTime() {
-    //this.messageService.add("hour = " + this.alarm.date);
-    //this.messageService.add("hour = " + new Date(this.alarm.date).getHours() + ":" + new Date(this.alarm.date).getMinutes());
     return this.alarm.getTime();
   }
 
@@ -92,9 +90,15 @@ export class AlarmDetailComponent implements OnInit {
     // On crée une Date depuis la String
     var alarmDate = new Date(this.alarm.date);
     // On crée une Date avec la précédente date et le résultat de l'Event
-    var laDate = new Date(alarmDate.getFullYear() + "/" + alarmDate.getMonth() + 1 + "/" + alarmDate.getDate() + " " + event + ":00");
+    var laDate = new Date(alarmDate.getFullYear() + "-" + alarmDate.getMonth() + 1 + "-" + alarmDate.getDate() + " " + event + "");
     // On reconstruit la String
-    this.alarm.date = laDate.getFullYear() + "-" + laDate.getMonth() + 1 + "-" + laDate.getDate() + " " + laDate.getHours() + ":" + laDate.getMinutes();
+    this.alarm.date = this.createTime(laDate);
+  }
+
+  private createTime(date: Date): string {
+    // On reconstruit la String
+    var popo = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + " " + ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + "";
+    return popo;
   }
 
   // Update selected days 
@@ -131,10 +135,18 @@ export class AlarmDetailComponent implements OnInit {
 
 
   onButtonOk(): void {
-
     if (!this.savingInProgress) {
       this.savingInProgress = true;
       this.alarmService.updateAlarm(this.alarm).subscribe(() => {
+        this.location.back();
+      });
+    }
+  }
+
+  onButtonCreate(): void {
+    if (!this.savingInProgress) {
+      this.savingInProgress = true;
+      this.alarmService.addAlarm(this.alarm).subscribe(() => {
         this.location.back();
       });
     }

@@ -14,6 +14,7 @@ export class AlarmService {
   // URLs to web api 
   private alarmsUrl = environment.apiUrl + 'alarms/';        // for Alarms
   private alarmUrl = environment.apiUrl + 'alarms/alarm/';   // for Specified Alarm
+  private alarmAddUrl = environment.apiUrl + 'alarms/alarm/add/';   // for Add Alarm
 
 
   constructor(
@@ -55,8 +56,22 @@ export class AlarmService {
       .post<AlarmContract>(this.alarmUrl, alarm)
       .pipe(
         retry(3), 
-        // tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),
-        // catchError(this.handleError<AlarmContract>(`getAlarm id=${alarm.id}`)),
+        tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),
+        catchError(this.handleError<AlarmContract>(`getAlarm id=${alarm.id}`)),
+        map(contract => new Alarm(contract))
+      );
+  }
+
+  addAlarm(alarm: Alarm): Observable<Alarm> {
+
+    // TODO: send the message _after_ fetching the alarms
+    this.log(`AlarmService: set alarm id=${alarm.id}`);
+    return this.http
+      .put<AlarmContract>(this.alarmAddUrl, alarm)
+      .pipe(
+        retry(3), 
+        tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),
+        catchError(this.handleError<AlarmContract>(`getAlarm id=${alarm.id}`)),
         map(contract => new Alarm(contract))
       );
   }
