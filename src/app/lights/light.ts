@@ -3,14 +3,14 @@ import { Color } from '../shared/Color';
 export interface LightContract{
     name: string;
     intensity: number;
-    color: Color;
+    color: string;
     duration: number;
 }
 
 export class Light{
     name: string;
     intensity: number;
-    color: Color;
+    color: string;
     duration: number;
 
     constructor(contract: LightContract){
