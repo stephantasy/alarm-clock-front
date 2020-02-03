@@ -12,9 +12,10 @@ import { AlarmContract, Alarm } from '../alarm-detail/alarm';
 export class AlarmService {
 
   // URLs to web api 
-  private alarmsUrl = environment.apiUrl + 'alarms/';        // for Alarms
+  private alarmsUrl = environment.apiUrl + 'alarms';        // for Alarms
   private alarmUrl = environment.apiUrl + 'alarms/alarm/';   // for Specified Alarm
-  private alarmAddUrl = environment.apiUrl + 'alarms/alarm/add/';   // for Add Alarm
+  private alarmUpdateUrl = environment.apiUrl + 'alarms/alarm';   // for Update Alarm
+  private alarmAddUrl = environment.apiUrl + 'alarms/alarm/add';   // for Add Alarm
 
 
   constructor(
@@ -53,7 +54,7 @@ export class AlarmService {
     // TODO: send the message _after_ fetching the alarms
     this.log(`AlarmService: set alarm id=${alarm.id}`);
     return this.http
-      .post<AlarmContract>(this.alarmUrl, alarm)
+      .put<AlarmContract>(this.alarmUpdateUrl, alarm)
       .pipe(
         retry(3), 
         tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),
@@ -67,7 +68,7 @@ export class AlarmService {
     // TODO: send the message _after_ fetching the alarms
     this.log(`AlarmService: set alarm id=${alarm.id}`);
     return this.http
-      .put<AlarmContract>(this.alarmAddUrl, alarm)
+      .post<AlarmContract>(this.alarmAddUrl, alarm)
       .pipe(
         retry(3), 
         tap(_ => this.log(`fetched alarm id=${alarm.id} (from ${this.alarmsUrl})`)),

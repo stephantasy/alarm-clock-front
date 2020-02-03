@@ -90,15 +90,15 @@ export class AlarmDetailComponent implements OnInit {
     // On crée une Date depuis la String
     var alarmDate = new Date(this.alarm.date);
     // On crée une Date avec la précédente date et le résultat de l'Event
-    var laDate = new Date(alarmDate.getFullYear() + "-" + alarmDate.getMonth() + 1 + "-" + alarmDate.getDate() + " " + event + "");
+    var laDate = new Date(alarmDate.getFullYear() + "-" + (alarmDate.getMonth() + 1) + "-" + alarmDate.getDate() + " " + event + "");
     // On reconstruit la String
     this.alarm.date = this.createTime(laDate);
   }
 
   private createTime(date: Date): string {
     // On reconstruit la String
-    var popo = date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + " " + ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + "";
-    return popo;
+    var stringDate = date.getFullYear() + "-" + ('0' + (date.getMonth() + 1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2) + " " + ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + "";
+    return stringDate;
   }
 
   // Update selected days 
