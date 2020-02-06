@@ -3,6 +3,8 @@ import { AlarmService } from '../services/alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
 import { MatSlideToggleChange } from '@angular/material';
 import { MessageService } from '../services/message.service';
+import { Observable, interval, Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,8 @@ import { MessageService } from '../services/message.service';
 })
 export class DashboardComponent implements OnInit {
 
+  
+  private updateSubscription: Subscription;
   alarms: Alarm[] = [];
 
   constructor(
@@ -20,6 +24,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getAlarms();
+
+    // Refresh data every minute
+    this.updateSubscription = interval(50000).subscribe( (val) => { this.getAlarms() });
   }
 
   getAlarms() {
