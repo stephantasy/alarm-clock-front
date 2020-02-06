@@ -48,7 +48,9 @@ export class DashboardComponent implements OnInit {
     return alarm.getActivated();
   }
 
-  addAlarm() {
 
+  ngOnDestroy(): void {
+    this.updateSubscription.unsubscribe();
   }
+  
 }
