@@ -115,12 +115,12 @@ export class AlarmDetailComponent implements OnInit {
   }
 
   // Recurrence or not
-  isRecurrenceOnce(obj: MatRadioChange): boolean {
+  isRecurrenceOnce(obj: any): boolean {   // MatRadioChange
     return this.alarm.isRecurrenceOnce();
   }
 
   // Recurrence Selection Changed
-  onRecurrenceChange(obj: MatRadioChange) {
+  onRecurrenceChange(obj: any) {
     // Display
     if (obj.value == RecurrenceType.Once) {
       this.daysAreHidden = true;
