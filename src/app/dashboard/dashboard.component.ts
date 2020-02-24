@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../services/alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
-import { MatSlideToggleChange } from '@angular/material';
+// import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MessageService } from '../services/message.service';
 import { Observable, interval, Subscription } from 'rxjs';
 
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // Activation/Desactivation of alarm
-  onSliderChange(obj: MatSlideToggleChange, alarm: Alarm){
+  onSliderChange(obj: any, alarm: Alarm){
     alarm.setActivated(obj.checked);
 
     // Send it to the backend

@@ -17,8 +17,8 @@
         <h2>Recurrence</h2>
 
         <mat-radio-group class="radio-group" (change)="onRecurrenceChange($event)">
-            <mat-radio-button [checked]="isRecurrenceOnce($this)" value="Once">Once</mat-radio-button>
-            <mat-radio-button [checked]="!isRecurrenceOnce($this)" value="EveryDay">Every Day</mat-radio-button>
+            <mat-radio-button [checked]="isRecurrenceOnce()" value="Once">Once</mat-radio-button>
+            <mat-radio-button [checked]="!isRecurrenceOnce()" value="EveryDay">Every Day</mat-radio-button>
         </mat-radio-group>
 
         <div id="recurrenceDays" *ngIf="!daysAreHidden">

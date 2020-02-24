@@ -4,11 +4,9 @@ import { Location } from '@angular/common';
 
 import { Alarm, AlarmContract } from './alarm';
 import { AlarmService } from '../services/alarm.service';
-import { MatCheckboxChange, MatRadioChange } from '@angular/material';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MessageService } from '../services/message.service';
 import { RecurrenceType, RecurrenceDaysNumber } from '../shared/recurrenceType';
-import { NgxMaterialTimepickerEventService } from 'ngx-material-timepicker/src/app/material-timepicker/services/ngx-material-timepicker-event.service';
-import { NgxMaterialTimepickerComponent } from 'ngx-material-timepicker';
 import { Recurrence, RecurrenceContract } from '../shared/Reccurrence';
 
 
@@ -115,7 +113,7 @@ export class AlarmDetailComponent implements OnInit {
   }
 
   // Recurrence or not
-  isRecurrenceOnce(obj: any): boolean {   // MatRadioChange
+  isRecurrenceOnce(): boolean {
     return this.alarm.isRecurrenceOnce();
   }
 
@@ -130,13 +128,14 @@ export class AlarmDetailComponent implements OnInit {
 
     // Data
     this.alarm.recurrence.recurrenceType = obj.value;
-
   }
 
 
   onButtonOk(): void {
     if (!this.savingInProgress) {
       this.savingInProgress = true;
+      // Activate the alarm
+      this.alarm.setActivated(true);
       this.alarmService.updateAlarm(this.alarm).subscribe(() => {
         this.location.back();
       });

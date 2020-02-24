@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { COLORS } from '../shared/colorList';
-import { MatSelectChange } from '@angular/material';
 
 @Component({
   selector: 'app-lights',

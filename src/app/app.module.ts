@@ -10,17 +10,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { 
-  MatCardModule, MatListModule, 
-  MatIconModule, MatSliderModule,
-  MatCheckboxModule, MatFormFieldModule,
-  MatInputModule, MatButtonModule,
-  MatSelectModule, MatGridListModule,
-  MatRadioModule
-} from '@angular/material';
-import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     FlexLayoutModule,
     NgxMaterialTimepickerModule.setLocale('fr-FR'),
   ],
+  // exports:[
+  //   MatSlideToggleModule,
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })
