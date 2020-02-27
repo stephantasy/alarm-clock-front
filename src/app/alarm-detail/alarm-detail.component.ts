@@ -1,10 +1,11 @@
+// import {MatCheckboxChange} from '@angular/material/checkbox/typings';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Alarm, AlarmContract } from './alarm';
 import { AlarmService } from '../services/alarm.service';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+// import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MessageService } from '../services/message.service';
 import { RecurrenceType, RecurrenceDaysNumber } from '../shared/recurrenceType';
 import { Recurrence, RecurrenceContract } from '../shared/Reccurrence';
@@ -100,7 +101,7 @@ export class AlarmDetailComponent implements OnInit {
   }
 
   // Update selected days 
-  onRecurrenceDays(obj: MatCheckboxChange, day: string): void {
+  onRecurrenceDays(obj: any, day: string): void {
     var dayPos = this.days.indexOf(day);
     this.alarm.setDaySelected(dayPos, obj.checked);
   }

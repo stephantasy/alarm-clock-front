@@ -13,6 +13,7 @@ export class MusicService {
   // URLs to web api 
   private musicListUrl = environment.apiUrl + 'musics/';        // for Alarms
   private musicUrl = environment.apiUrl + 'music/';   // for Specified Alarm
+  private musicStopUrl = environment.apiUrl + 'musics/stop';   // to stop music
 
   constructor(
     private messageService: MessageService,
@@ -30,6 +31,15 @@ export class MusicService {
       );
   }
 
+  public stop(): Observable<string[]> {
+    return this.http
+      .put<string[]>(this.musicStopUrl, "")
+      .pipe(
+        retry(3),
+        tap(_ => this.log('stop music')),
+        catchError(this.handleError<string[]>('stopMusic'))
+      );
+  }
 
 
   /**
