@@ -35,7 +35,6 @@ export class MusicService {
     return this.http
       .put<string[]>(this.musicStopUrl, "")
       .pipe(
-        retry(3),
         tap(_ => this.log('stop music')),
         catchError(this.handleError<string[]>('stopMusic'))
       );

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MusicService } from './services/music.service';
 import { MessageService } from './services/message.service';
+import { LightService } from './services/light.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { MessageService } from './services/message.service';
 })
 export class AppComponent {
   constructor(private musicService: MusicService,
+    private lightService: LightService,
     private messageService: MessageService
     ) { }
   title = 'Alarm Clock';
@@ -16,6 +18,12 @@ export class AppComponent {
   stopMusic(){
     this.musicService.stop().subscribe(() => {
         this.messageService.add("Music Stopped");
+      });
+  }
+  
+  stopLight(){
+    this.lightService.stop().subscribe(() => {
+        this.messageService.add("Ligth Stopped");
       });
   }
 }
