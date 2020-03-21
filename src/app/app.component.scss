@@ -18,9 +18,14 @@ body {
 }
 body,
 input[type="text"],
-button {
-  color: #333;
-  font-family: Cambria, Georgia;
+nav button {
+  font-weight: bold;
+  margin: 10px;
+  background-color: rgb(255, 194, 170);
+}
+nav button:hover{
+  color: #ffffff;
+  background-color: rgb(255, 104, 44);
 }
 /* everywhere else */
 * {
@@ -29,11 +34,11 @@ button {
 
 /* NAV */
 nav a {
-  padding: 5px 10px;
+  padding: 10px 15px;
   text-decoration: none;
   margin: 10px;
   display: inline-block;
-  background-color: #eee;
+  background-color: rgb(209, 250, 255);
   border-radius: 4px;
 }
 nav a:visited, a:link {
