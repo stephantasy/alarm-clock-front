@@ -13,6 +13,7 @@ export class LightService {
 
   // URLs to web api 
   private lightStopUrl = environment.apiUrl + 'lights/off-all';   // to turn-off light
+  private lightStateUrl = environment.apiUrl + 'lights/state';   // Light State (on/off)
 
   constructor(
     private messageService: MessageService,
@@ -29,6 +30,14 @@ export class LightService {
       );
   }
 
+  public getLightState(): Observable<boolean> {
+    return this.http
+      .get<boolean>(this.lightStateUrl)
+      .pipe(
+        //tap(_ => this.log('get light state=' + _)),
+        catchError(this.handleError<boolean>('getLightState'))
+      );
+  }
 
   /**
  * Handle Http operation that failed.
@@ -53,6 +62,6 @@ export class LightService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`AlarmService: ${message}`);
+    this.messageService.add(`LightService: ${message}`);
   }
 }

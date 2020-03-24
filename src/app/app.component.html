@@ -4,8 +4,8 @@
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/music">Music</a>
   <a routerLink="/light">Light</a>
-  <button mat-button (click)="stopMusic()">Stop Music</button>
-  <button mat-button (click)="stopLight()">Stop Light</button>
+  <button mat-button (click)="stopMusic()" [ngClass]="musicState ? 'on' : 'off'">Stop Music</button>
+  <button mat-button (click)="stopLight()" [ngClass]="lightState ? 'on' : 'off'">Stop Light</button>
 </nav>
 <router-outlet></router-outlet>
 <hr>

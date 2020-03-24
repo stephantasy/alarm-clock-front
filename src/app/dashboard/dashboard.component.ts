@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../services/alarm.service';
 import { Alarm } from '../alarm-detail/alarm';
-// import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MessageService } from '../services/message.service';
 import { Observable, interval, Subscription } from 'rxjs';
 
@@ -13,28 +12,33 @@ import { Observable, interval, Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-  
+
   private updateSubscription: Subscription;
   alarms: Alarm[] = [];
+  musicState: boolean;
+  lightState: boolean;
 
   constructor(
-    private alarmService:AlarmService,
+    private alarmService: AlarmService,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.getAlarms();
 
-    // Refresh data every minute
-    this.updateSubscription = interval(50000).subscribe( (val) => { this.getAlarms() });
+    // Refresh data every... (in milliseconds)
+    this.updateSubscription = interval(30000).subscribe((val) => {
+      this.getAlarms();
+    });
   }
 
   getAlarms() {
     this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);
   }
 
+
   // Activation/Desactivation of alarm
-  onSliderChange(obj: any, alarm: Alarm){
+  onSliderChange(obj: any, alarm: Alarm) {
     alarm.setActivated(obj.checked);
 
     // Send it to the backend
@@ -43,8 +47,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  
-  isActivated(alarm: Alarm): boolean{
+
+  isActivated(alarm: Alarm): boolean {
     return alarm.getActivated();
   }
 
@@ -52,5 +56,6 @@ export class DashboardComponent implements OnInit {
   ngOnDestroy(): void {
     this.updateSubscription.unsubscribe();
   }
-  
+
+
 }

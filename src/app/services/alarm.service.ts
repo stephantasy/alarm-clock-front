@@ -25,12 +25,11 @@ export class AlarmService {
 
   getAlarms(): Observable<Alarm[]> {
     // TODO: send the message _after_ fetching the alarms
-    this.log('AlarmService: fetched alarms');
     return this.http
       .get<AlarmContract[]>(this.alarmsUrl)
       .pipe(
         retry(3), 
-        tap(_ => this.log('fetched alarms')),
+        //tap(_ => this.log('fetched alarms')),
         catchError(this.handleError<AlarmContract[]>('getAlarms')),
         map(contract =>  { return contract.map((item:AlarmContract) => new Alarm(item))})
       );
@@ -38,7 +37,7 @@ export class AlarmService {
 
   getAlarm(id: number): Observable<Alarm> {
     // TODO: send the message _after_ fetching the alarms
-    this.log(`AlarmService: fetched alarm id=${id}`);
+    //this.log(`AlarmService: fetched alarm id=${id}`);
     return this.http
       .get<AlarmContract>(this.alarmUrl + id)
       .pipe(
@@ -52,7 +51,7 @@ export class AlarmService {
   updateAlarm(alarm: Alarm): Observable<Alarm> {
 
     // TODO: send the message _after_ fetching the alarms
-    this.log(`AlarmService: set alarm id=${alarm.id}`);
+    //this.log(`AlarmService: set alarm id=${alarm.id}`);
     return this.http
       .put<AlarmContract>(this.alarmUpdateUrl, alarm)
       .pipe(
@@ -66,7 +65,7 @@ export class AlarmService {
   addAlarm(alarm: Alarm): Observable<Alarm> {
 
     // TODO: send the message _after_ fetching the alarms
-    this.log(`AlarmService: set alarm id=${alarm.id}`);
+    //this.log(`AlarmService: set alarm id=${alarm.id}`);
     return this.http
       .post<AlarmContract>(this.alarmAddUrl, alarm)
       .pipe(

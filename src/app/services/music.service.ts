@@ -14,6 +14,7 @@ export class MusicService {
   private musicListUrl = environment.apiUrl + 'musics/';        // for Alarms
   private musicUrl = environment.apiUrl + 'music/';   // for Specified Alarm
   private musicStopUrl = environment.apiUrl + 'musics/stop';   // to stop music
+  private musicStateUrl = environment.apiUrl + 'musics/state';   // Music State (on/off)
 
   constructor(
     private messageService: MessageService,
@@ -25,7 +26,6 @@ export class MusicService {
     return this.http
       .get<string[]>(this.musicListUrl)
       .pipe(
-        retry(3),
         tap(_ => this.log('fetched music list')),
         catchError(this.handleError<string[]>('getMusicList'))
       );
@@ -40,6 +40,14 @@ export class MusicService {
       );
   }
 
+  public getMusicState(): Observable<boolean> {
+    return this.http
+      .get<boolean>(this.musicStateUrl)
+      .pipe(
+        //tap(_ => this.log('get music state=' + _)),
+        catchError(this.handleError<boolean>('getMusicState'))
+      );
+  }
 
   /**
  * Handle Http operation that failed.
@@ -64,7 +72,7 @@ export class MusicService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`AlarmService: ${message}`);
+    this.messageService.add(`MusicService: ${message}`);
   }
 }
 
