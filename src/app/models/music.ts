@@ -1,4 +1,5 @@
 export interface MusicContract{
+    id: number;
     name: string;
     file: string;
     volume: number;
@@ -7,6 +8,7 @@ export interface MusicContract{
 }
 
 export class Music{
+    id: number;
     name: string;
     file: string;
     volume: number;

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { MusicsComponent } from './musics/musics.component';
 import { LightsComponent } from './lights/lights.component';
 import { AlarmDetailComponent } from './alarm-detail/alarm-detail.component';
+import { MusicDetailComponent } from './music-detail/music-detail.component';
+import { LightDetailComponent } from './light-detail/light-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +30,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 @NgModule({
   declarations: [
     AppComponent,
+    AlarmDetailComponent,
+    MusicDetailComponent,
     AlarmDetailComponent,
     MusicsComponent,
     LightsComponent,

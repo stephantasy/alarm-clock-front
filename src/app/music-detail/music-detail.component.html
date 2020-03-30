@@ -1,0 +1,67 @@
+<h1>Music</h1>
+
+<div *ngIf="music">
+    <div>
+        <h3>Title:</h3>
+        <input [(ngModel)]="music.name" placeholder="name" />
+    </div>
+
+    <mat-card>
+        <mat-card-content>
+            <span>Music to play:</span>
+            <mat-form-field class="music-file">
+                <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+                    <mat-option value="invalid"></mat-option>
+                    <mat-option *ngFor="let m of musics" value="valid">
+                        {{m}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                    Your selection is invalid
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <!-- <p>Maximum volume of the music</p>
+        <span>Volume: </span>
+        <mat-slider class="slider" [min]="0" [max]="100" [step]="1" [thumbLabel]="true" [(ngModel)]="volumeValue">
+        </mat-slider>{{volumeValue}}%
+        <br> -->
+
+            <h4>How long it will take to reach the maximum volume since the start</h4>
+            <span>Duration: </span>
+            <mat-slider class="slider" [min]="0" [max]="60" [step]="1" [thumbLabel]="true" [(ngModel)]="durationValue">
+            </mat-slider>{{durationValue}} minute(s)
+            <br>
+
+            <h4>Will the music loop when finished</h4>
+            <span>Loop: </span>
+            <mat-checkbox class="" [(ngModel)]="loopChecked">
+            </mat-checkbox>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <!-- <div id="commands" class="commands">
+        <div class="button-row-validation">
+            <button mat-raised-button color="primary">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-raised-button color="primary">
+                <mat-icon>pause</mat-icon>
+            </button>
+            <button mat-raised-button color="primary">
+                <mat-icon>stop</mat-icon>
+            </button>
+        </div>
+    </div> -->
+
+    <div id="validation" class="validation">
+        <div class="button-row-validation">
+            <button mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Validate</button>
+            <button mat-raised-button routerLink="." color="warn" (click)=onButtonCancel()>Cancel</button>
+        </div>
+    </div>
+</div>

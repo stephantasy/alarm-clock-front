@@ -4,6 +4,7 @@ import { retry, tap, catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MessageService } from './message.service';
+import { MusicContract, Music } from '../models/music';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,11 @@ import { MessageService } from './message.service';
 export class MusicService {
 
   // URLs to web api 
-  private musicListUrl = environment.apiUrl + 'musics/';        // for Alarms
-  private musicUrl = environment.apiUrl + 'music/';   // for Specified Alarm
+  private musicListUrl = environment.apiUrl + 'musics/';        // for Musics
+  private musicUrl = environment.apiUrl + 'musics/music/';   // for Specified Music
   private musicStopUrl = environment.apiUrl + 'musics/stop';   // to stop music
   private musicStateUrl = environment.apiUrl + 'musics/state';   // Music State (on/off)
+
 
   constructor(
     private messageService: MessageService,
@@ -28,6 +30,18 @@ export class MusicService {
       .pipe(
         tap(_ => this.log('fetched music list')),
         catchError(this.handleError<string[]>('getMusicList'))
+      );
+  }
+
+  getMusic(id: number): Observable<Music> {
+    // TODO: send the message _after_ fetching the musics
+    //this.log(`MusicService: fetched music id=${id}`);
+    return this.http
+      .get<MusicContract>(this.musicUrl + id)
+      .pipe(
+        tap(_ => this.log(`fetched music id=${id} (from ${this.musicUrl})`)),
+        catchError(this.handleError<MusicContract>(`getMusic id=${id}`)),
+        map(contract => new Music(contract))
       );
   }
 

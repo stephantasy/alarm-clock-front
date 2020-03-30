@@ -1,6 +1,7 @@
 import { Color } from '../shared/Color';
 
 export interface LightContract{
+    id: number;
     name: string;
     intensity: number;
     color: string;
@@ -8,6 +9,7 @@ export interface LightContract{
 }
 
 export class Light{
+    id: number;
     name: string;
     intensity: number;
     color: string;

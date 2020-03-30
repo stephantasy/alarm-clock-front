@@ -1,0 +1,6 @@
+[] - Add delete alarm feature
+
+[] - Arrange Alarm Card to fit better on mobile (the name is not readable)
+[] - Add Front version on page
+[] - Add API version on page
+

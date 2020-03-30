@@ -1,7 +1,5 @@
 import { Time } from '@angular/common';
 import { Recurrence } from '../shared/Reccurrence';
-import { Music } from '../musics/music';
-import { Light } from '../lights/light';
 import { RecurrenceType } from '../shared/recurrenceType';
 
 declare const alarmContract: AlarmContract;
@@ -12,8 +10,8 @@ export interface AlarmContract{
     description: string;
     date: string;
     recurrence: Recurrence;
-    music: Music;
-    light: Light;
+    musicID: number;
+    lightID: number;
     deleteAfterDone: boolean;
     activated: boolean; 
 }
@@ -24,8 +22,8 @@ export class Alarm{
     description: string;
     date: string;
     recurrence: Recurrence;
-    music: Music;
-    light: Light;
+    musicID: number;
+    lightID: number;
     deleteAfterDone: boolean;
     activated: boolean;
 
@@ -35,8 +33,8 @@ export class Alarm{
         this.description = contract.description;
         this.date = contract.date;// new Date(contract.date);
         this.recurrence = new Recurrence(contract.recurrence);
-        this.music = contract.music;
-        this.light = contract.light;
+        this.musicID = contract.musicID;
+        this.lightID = contract.lightID;
         this.deleteAfterDone = contract.deleteAfterDone;
         this.activated = contract.activated;
     }

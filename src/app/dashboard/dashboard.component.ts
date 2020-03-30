@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlarmService } from '../services/alarm.service';
-import { Alarm } from '../alarm-detail/alarm';
+import { Alarm } from '../models/alarm';
 import { MessageService } from '../services/message.service';
 import { Observable, interval, Subscription } from 'rxjs';
 

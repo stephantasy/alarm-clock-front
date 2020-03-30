@@ -4,7 +4,7 @@ import { catchError, map, tap, retry } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { AlarmContract, Alarm } from '../alarm-detail/alarm';
+import { AlarmContract, Alarm } from '../models/alarm';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,7 @@ export class AlarmService {
       .get<AlarmContract>(this.alarmUrl + id)
       .pipe(
         retry(3), 
-        tap(_ => this.log(`fetched alarm id=${id} (from ${this.alarmsUrl})`)),
+        tap(_ => this.log(`fetched alarm id=${id} (from ${this.alarmUrl})`)),
         catchError(this.handleError<AlarmContract>(`getAlarm id=${id}`)),
         map(contract => new Alarm(contract))
       );

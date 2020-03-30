@@ -3,7 +3,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Alarm, AlarmContract } from './alarm';
+import { Alarm, AlarmContract } from '../models/alarm';
 import { AlarmService } from '../services/alarm.service';
 // import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MessageService } from '../services/message.service';
@@ -63,8 +63,8 @@ export class AlarmDetailComponent implements OnInit {
         description: "",
         date: this.createTime(new Date()),
         recurrence: new Recurrence(recurrence),
-        music: null,
-        light: null,
+        musicID: 1,
+        lightID: 1,
         deleteAfterDone: false,
         activated: true
       } as AlarmContract;
@@ -131,6 +131,21 @@ export class AlarmDetailComponent implements OnInit {
     this.alarm.recurrence.recurrenceType = obj.value;
   }
 
+  // Add/Modify the current Music
+  onButtonAddMusic(){
+    
+  }
+  isNewMusic(): boolean {
+    return this.alarm.musicID != 1;
+  }
+
+  // Add/Modify the current Light
+  onButtonAddLight(){
+    
+  }
+  isNewLight(): boolean {
+    return this.alarm.lightID != 1;
+  }
 
   onButtonOk(): void {
     if (!this.savingInProgress) {

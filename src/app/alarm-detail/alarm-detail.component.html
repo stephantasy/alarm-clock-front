@@ -32,13 +32,30 @@
                 </mat-checkbox>
             </section>
         </div>
-
     </div>
 
+    
+    <div class="">
+        <h3>Music</h3>
+        <button *ngIf="!isNewMusic()" mat-raised-button routerLink="/music-detail/{{alarm.musicID}}" color="primary" (click)=onButtonAddMusic()>Add Music</button>
+        <button *ngIf="isNewMusic()" mat-raised-button routerLink="/music-detail/{{alarm.musicID}}" color="primary" (click)=onButtonAddMusic()>Modify Music</button>
+        <span class="music-light-name">{{alarm.musicID}}</span>
+    </div>
+
+    
+    <!-- <div class="">
+        <h3>Light</h3>
+        <button *ngIf="!isNewLight()" mat-raised-button routerLink="/light-detail/{{alarm.lightId}}" color="primary" (click)=onButtonAddLight()>Add Light</button>
+        <button *ngIf="isNewLight()" mat-raised-button routerLink="/light-detail/{{alarm.lightId}}" color="primary" (click)=onButtonAddLight()>Modify Light</button>
+        <span class="music-light-name">{{alarm.lightId}}</span>
+    </div> -->
+
+
     <div id="validation" class="validation">
+
         <div class="button-row-validation">
             <button *ngIf="isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonCreate()>Create</button>
-            <button *ngIf="!isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Ok</button>
+            <button *ngIf="!isNewAlarm" mat-raised-button routerLink="." color="success" (click)=onButtonOk()>Validate</button>
             <button mat-raised-button routerLink="." color="warn" (click)=onButtonCancel()>Cancel</button>
         </div>
     </div>
